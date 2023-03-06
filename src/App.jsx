@@ -1,8 +1,9 @@
-import logo from "./img/logo.png";
-import seta from "./img/seta_play.png"
 import styled from 'styled-components';
 import React from 'react';
 import { createGlobalStyle } from "styled-components";
+import Bottom from "./Bottom.jsx";
+import Top from "./Top.jsx";
+import Flashcards from "./Flashcards.jsx";
 
 const GlobalStyle = createGlobalStyle`
   :root{
@@ -43,17 +44,6 @@ const GlobalStyle = createGlobalStyle`
   } 
 `;
 
-const Header = styled.div`
-  display:flex;
-  justify-content: center;
-  position: fixed;
-  border-top: 44px solid;
-  border-color: #FB6B6B;
-  width: 100%;
-  left: 50%; 
-  transform: translateX(-50%); 
-  background-color: #FB6B6B;
-`;
 
 const Container = styled.div`
   background-color: #FB6B6B;
@@ -61,85 +51,6 @@ const Container = styled.div`
   height: 667px;
   display: flex;
   flex-direction: column;
-`;
-
-const Img = styled.img`
-  width: 52px;
-  height: 60px;
-`;
-
-const Text = styled.h1`
-  font-family: Righteous;
-  font-size: 36px;
-  font-weight: 400;
-  line-height: 45px;
-  letter-spacing: -0.012em;
-  text-align: center;
-  color: #FFFFFF;
-
-`;
-
-const Box = styled.div`
-  width: 203.17px;
-  height: 44px;
-`;
-
-const Main = styled.div`
-  margin-top: 153px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Card = styled.div`
-  background-color: #FFFFFF;
-  width: 300px;
-  height: 65px;
-  margin-bottom: 25px;
-  border-radius: 5px;
-  margin-left: 10%;
-  display: flex;
-`;
-
-const OnCard = styled.h2`
-  font-family: 'Recursive';
-  font-size: 16px;
-  margin-top: 20px;
-  margin-left: 5%;
-
-  font-weight: 700;
-  line-height: 19px;
-  letter-spacing: 0em;
-  text-align: left;
-
-`;
-
-const Play = styled.img`
-  width: 20px;
-  height: 23px;
-  margin-left: 54.33333333%;
-  margin-top: 20px;
-`;
-
-const Footer = styled.div`
-  width: 100%;
-  background-color: #FFFFFF;  
-  display: flex;
-  position: fixed;
-  margin-top: 597px;
-`;
-
-const Finish = styled.p`
-  height: 80px;
-  width: 100%;
-  font-family: 'Recursive';
-  text-align: center;
-  font-family: Recursive;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: 0em;
-  margin-top: 24px;
 `;
 
 const cards = [
@@ -158,49 +69,9 @@ export default function App() {
     <div>
       <GlobalStyle />
         <Container>
-          <Header>
-            <Img src={logo} alt="" />
-            <Box>
-              <Text>ZapRecall</Text>
-            </Box>
-          </Header>
-          <Main>
-            <Card data-test="flashcard">
-              <OnCard>Pergunta 1</OnCard>
-              <Play data-test="play-btn" src={seta} alt="" />
-            </Card>
-            <Card data-test="flashcard">
-              <OnCard>Pergunta 2</OnCard>
-              <Play data-test="play-btn" src={seta} alt="" />
-            </Card>
-            <Card data-test="flashcard">
-              <OnCard>Pergunta 3</OnCard>
-              <Play data-test="play-btn" src={seta} alt="" />
-            </Card>
-            <Card data-test="flashcard">
-              <OnCard>Pergunta 4</OnCard>
-              <Play data-test="play-btn" src={seta} alt="" />
-            </Card>
-            <Card data-test="flashcard">
-              <OnCard>Pergunta 5</OnCard>
-              <Play data-test="play-btn" src={seta} alt="" />
-            </Card>
-            <Card data-test="flashcard">
-              <OnCard>Pergunta 6</OnCard>
-              <Play data-test="play-btn" src={seta} alt="" />
-            </Card>
-            <Card data-test="flashcard">
-              <OnCard>Pergunta 7</OnCard>
-              <Play data-test="play-btn" src={seta} alt="" />
-            </Card>
-            <Card data-test="flashcard">
-              <OnCard>Pergunta 8</OnCard>
-              <Play data-test="play-btn" src={seta} alt="" />
-            </Card>
-          </Main>
-          <Footer data-test="footer">
-            <Finish>0/8 CONCLUÍDOS</Finish>
-          </Footer>
+          <Top />
+          <Flashcards />
+          <Bottom />
         </Container>
     </div>
   );
