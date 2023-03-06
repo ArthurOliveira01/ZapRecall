@@ -192,6 +192,7 @@ export default function Flashcards({initial, pergunta, resposta, text, setRespon
     const [fase2, setFase2] = useState(false);
     const [fase3, setFase3] = useState(false);
     const [completed, setCompleted] = useState(false);
+    const data = ["zap-icon", "partial-icon", "no-icon"];
 
 
     function stepTwoToThree(){
@@ -239,7 +240,7 @@ export default function Flashcards({initial, pergunta, resposta, text, setRespon
             completed && (
                 <Final data-test="flashcard">
                     <OnCard data-test="flashcard-text">{initial[index]}</OnCard>
-                    <Icon src={aux[num]} alt="" />
+                    <Icon data-test={data[num]} src={aux[num]} alt="" />
                 </Final>
             )
             ))
