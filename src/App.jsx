@@ -80,6 +80,8 @@ export default function App() {
   const [estado, setEstado] = useState(0);
   const [conjunto, setConjunto] = useState([]);
   const [text, setText] = useState(resposta);
+  const [num, setNum] = useState(-1);
+  
   
 
   return (
@@ -94,6 +96,8 @@ export default function App() {
           resposta = {resposta}
           setRespondidas = {setRespondidas}
           respondidas = {respondidas}
+          setNum = {setNum}
+          num = {num}
           />
           <Foot
           respondidas = {respondidas}

@@ -149,7 +149,7 @@ const Good = styled.button`
     color: #FFFFFF;
 `;
 
-const Final = styled.button`
+const Final = styled.div`
     width: 300px;
     height: 65px;
     background-color: #FFFFFF;
@@ -162,6 +162,8 @@ const Final = styled.button`
 const Icon = styled.img`
     width: 23px;
     height: 23px;
+    margin-left: 161px;
+    margin-top: 20px;
 `
 
 //<Card data-test="flashcard">
@@ -184,15 +186,12 @@ const Icon = styled.img`
             //        </Botoes>
               //  </Gabarito>
 
-export default function Flashcards({initial, pergunta, resposta, text, setRespondidas, respondidas}){
-    let aux = -1;
-    const img = ["./img/icone_certo.png", "./img/icone_quase.png", "./img/icone_erro.png"];
+export default function Flashcards({initial, pergunta, resposta, text, setRespondidas, respondidas, num, setNum}){
+    let aux = [good, mid, bad];
     const [fase1, setFase1] = useState(true);
     const [fase2, setFase2] = useState(false);
     const [fase3, setFase3] = useState(false);
     const [completed, setCompleted] = useState(false);
-    const [first, setFirst] = useState({seta});
-    const [num, setNum] = useState(-1);
 
 
     function stepTwoToThree(){
@@ -208,16 +207,8 @@ export default function Flashcards({initial, pergunta, resposta, text, setRespon
     function done(selected){
         setCompleted(true);
         setFase3(false);
-
-        if(selected == "good"){
-            console.log('entrei');
-            aux = 0;
-        } else if(selected == "mid"){
-            aux = 1;
-        } else{
-            aux = 2;
-        }
-        console.log(num);
+        setRespondidas(respondidas + 1);
+        setNum(selected);
     }
 
 
@@ -254,16 +245,16 @@ export default function Flashcards({initial, pergunta, resposta, text, setRespon
                 <Gabarito data-test="flashcard">
                     <Ok data-test="flashcard-test">{resposta[index]}</Ok>
                     <Botoes>
-                        <Bad onClick={() => done("bad")} data-test="no-btn">Não lembrei</Bad>
-                        <Mid onClick={() => done("mid")} data-test="partial-btn">Quase não lembrei</Mid>
-                        <Good onClick={() => done("good")} data-test="zap-btn">Zap!</Good>
+                        <Bad onClick={() => done(2)} data-test="no-btn">Não lembrei</Bad>
+                        <Mid onClick={() => done(1)} data-test="partial-btn">Quase não lembrei</Mid>
+                        <Good onClick={() => done(0)} data-test="zap-btn">Zap!</Good>
                     </Botoes>
                 </Gabarito>
             ) ||
             completed && (
                 <Final data-test="flashcard">
                     <OnCard data-test="flashcard-text">{initial[index]}</OnCard>
-                    <Icon src={img[aux]} alt="" />
+                    <Icon src={aux[num]} alt="" />
                 </Final>
             )
             ))
