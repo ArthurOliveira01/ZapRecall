@@ -211,21 +211,6 @@ export default function Flashcards({initial, pergunta, resposta, text, setRespon
         setNum(selected);
     }
 
-
-    {fase1 && (
-        <Card data-test="flashcard">
-            <OnCard data-test="flashcard-text"></OnCard>
-            <Play data-test="play-btn" src={seta} alt="" />
-        </Card>
-    )}
-
-    {fase2 && (
-        <Question data-test="flashcard">
-            <Textquestion data-test="flashcard-text"></Textquestion>
-            <Turn data-test="turn-btn" src={virar} alt="" />
-        </Question>
-    )}
-
     return(
         <Main>
             {text.map((string, index) => (
@@ -243,7 +228,7 @@ export default function Flashcards({initial, pergunta, resposta, text, setRespon
             ) ||
             fase3 && (
                 <Gabarito data-test="flashcard">
-                    <Ok data-test="flashcard-test">{resposta[index]}</Ok>
+                    <Ok data-test="flashcard-text">{resposta[index]}</Ok>
                     <Botoes>
                         <Bad onClick={() => done(2)} data-test="no-btn">Não lembrei</Bad>
                         <Mid onClick={() => done(1)} data-test="partial-btn">Quase não lembrei</Mid>
