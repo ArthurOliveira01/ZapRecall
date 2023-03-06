@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import seta from "./img/seta_play.png"
 import virar from "./img/seta_virar.png"
 import bad from "./img/icone_erro.png"
@@ -131,7 +131,7 @@ const Mid = styled.button`
     text-align: center;
     color: #FFFFFF;
     margin-right: 7.74px;
-`
+`;
 
 const Good = styled.button`
     width: 85.17px;
@@ -147,7 +147,23 @@ const Good = styled.button`
     letter-spacing: 0em;
     text-align: center;
     color: #FFFFFF;
+`;
+
+const Final = styled.button`
+    width: 300px;
+    height: 65px;
+    background-color: #FFFFFF;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    margin-left: 10%;
+    display: flex;
+`;
+
+const Icon = styled.img`
+    width: 23px;
+    height: 23px;
 `
+
 //<Card data-test="flashcard">
   //                  <OnCard data-test="flashcard-text">{string}</OnCard>
     //                <Play data-test="play-btn" src={seta} alt="" />
@@ -159,21 +175,99 @@ const Good = styled.button`
     //                <Turn src={virar} alt="" />
       //          </Question>
 
+//<Gabarito data-test="flashcard">
+  //                  <Ok>{string}</Ok>
+    //                <Botoes>
+      //                  <Bad data-test="no-btn">Não lembrei</Bad>
+        //                <Mid data-test="partial-btn">Quase não lembrei</Mid>
+          //              <Good data-test="zap-btn">Zap!</Good>
+            //        </Botoes>
+              //  </Gabarito>
 
-export default function Flashcards({initial, pergunta, resposta, text}){
+export default function Flashcards({initial, pergunta, resposta, text, setRespondidas, respondidas}){
+    let aux = -1;
+    const img = ["./img/icone_certo.png", "./img/icone_quase.png", "./img/icone_erro.png"];
+    const [fase1, setFase1] = useState(true);
+    const [fase2, setFase2] = useState(false);
+    const [fase3, setFase3] = useState(false);
+    const [completed, setCompleted] = useState(false);
+    const [first, setFirst] = useState({seta});
+    const [num, setNum] = useState(-1);
+
+
+    function stepTwoToThree(){
+        setFase3(true);
+        setFase2(false);
+    }
+
+    function stepOneToTwo(){
+        setFase2(true);
+        setFase1(false);
+    }
+
+    function done(selected){
+        setCompleted(true);
+        setFase3(false);
+
+        if(selected == "good"){
+            console.log('entrei');
+            aux = 0;
+        } else if(selected == "mid"){
+            aux = 1;
+        } else{
+            aux = 2;
+        }
+        console.log(num);
+    }
+
+
+    {fase1 && (
+        <Card data-test="flashcard">
+            <OnCard data-test="flashcard-text"></OnCard>
+            <Play data-test="play-btn" src={seta} alt="" />
+        </Card>
+    )}
+
+    {fase2 && (
+        <Question data-test="flashcard">
+            <Textquestion data-test="flashcard-text"></Textquestion>
+            <Turn data-test="turn-btn" src={virar} alt="" />
+        </Question>
+    )}
 
     return(
         <Main>
-            {text.map((string) => (
+            {text.map((string, index) => (
+            fase1 && (
+                <Card data-test="flashcard">
+                    <OnCard data-test="flashcard-text">{initial[index]}</OnCard>
+                    <Play onClick={stepOneToTwo} data-test="play-btn" src={seta} alt="" />
+                </Card>
+            ) || 
+            fase2 && (
+                <Question data-test="flashcard">
+                    <Textquestion data-test="flashcard-text">{pergunta[index]}</Textquestion>
+                    <Turn onClick={stepTwoToThree} data-test="turn-btn" src={virar} alt="" />
+                </Question>
+            ) ||
+            fase3 && (
                 <Gabarito data-test="flashcard">
-                    <Ok>{string}</Ok>
+                    <Ok data-test="flashcard-test">{resposta[index]}</Ok>
                     <Botoes>
-                        <Bad data-test="no-btn">Não lembrei</Bad>
-                        <Mid data-test="partial-btn">Quase não lembrei</Mid>
-                        <Good data-test="zap-btn">Zap!</Good>
+                        <Bad onClick={() => done("bad")} data-test="no-btn">Não lembrei</Bad>
+                        <Mid onClick={() => done("mid")} data-test="partial-btn">Quase não lembrei</Mid>
+                        <Good onClick={() => done("good")} data-test="zap-btn">Zap!</Good>
                     </Botoes>
                 </Gabarito>
-            ))}    
+            ) ||
+            completed && (
+                <Final data-test="flashcard">
+                    <OnCard data-test="flashcard-text">{initial[index]}</OnCard>
+                    <Icon src={img[aux]} alt="" />
+                </Final>
+            )
+            ))
+        }    
         </Main>
     );
 }

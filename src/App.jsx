@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   :root{
     background-color: #FB6B6B;
     width: 100%;
-    height: 1900px;
+    height: 1450px;
   }
 
    /* Reset de CSS */
@@ -92,6 +92,8 @@ export default function App() {
           initial = {initial}
           pergunta = {pergunta}
           resposta = {resposta}
+          setRespondidas = {setRespondidas}
+          respondidas = {respondidas}
           />
           <Foot
           respondidas = {respondidas}
