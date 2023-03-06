@@ -70,7 +70,9 @@ export default function App() {
       <GlobalStyle />
         <Container>
           <Top />
-          <Flashcards />
+          <Flashcards
+          question = {cards.question}
+          />
           <Bottom />
         </Container>
     </div>

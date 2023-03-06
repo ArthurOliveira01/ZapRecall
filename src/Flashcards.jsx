@@ -39,31 +39,31 @@ const Play = styled.img`
   cursor: pointer;
 `;
 
-export default function Flashcards(){
+export default function Flashcards(props){
     return(
         <Main>
             <Card data-test="flashcard">
-              <OnCard>Pergunta 1</OnCard>
+              <OnCard data-test="flashcard-text">Pergunta 1</OnCard>
               <Play data-test="play-btn" src={seta} alt="" />
             </Card>
             <Card data-test="flashcard">
-              <OnCard>Pergunta 2</OnCard>
+              <OnCard data-test="flashcard-text">Pergunta 2</OnCard>
               <Play data-test="play-btn" src={seta} alt="" />
             </Card>
             <Card data-test="flashcard">
-              <OnCard>Pergunta 3</OnCard>
+              <OnCard data-test="flashcard-text">Pergunta 3</OnCard>
               <Play data-test="play-btn" src={seta} alt="" />
             </Card>
             <Card data-test="flashcard">
-              <OnCard>Pergunta 4</OnCard>
+              <OnCard data-test="flashcard-text">Pergunta 4</OnCard>
               <Play data-test="play-btn" src={seta} alt="" />
             </Card>
             <Card data-test="flashcard">
-              <OnCard>Pergunta 5</OnCard>
+              <OnCard data-test="flashcard-text">Pergunta 5</OnCard>
               <Play data-test="play-btn" src={seta} alt="" />
             </Card>
             <Card data-test="flashcard">
-              <OnCard>Pergunta 6</OnCard>
+              <OnCard data-test="flashcard-text">Pergunta 6</OnCard>
               <Play data-test="play-btn" src={seta} alt="" />
             </Card>
             <Card data-test="flashcard">
@@ -71,7 +71,7 @@ export default function Flashcards(){
               <Play data-test="play-btn" src={seta} alt="" />
             </Card>
             <Card data-test="flashcard">
-              <OnCard>Pergunta 8</OnCard>
+              <OnCard data-test="flashcard-text">Pergunta 8</OnCard>
               <Play data-test="play-btn" src={seta} alt="" />
             </Card>
           </Main>
