@@ -67,7 +67,7 @@ export default function Flashcards(){
               <Play data-test="play-btn" src={seta} alt="" />
             </Card>
             <Card data-test="flashcard">
-              <OnCard>Pergunta 7</OnCard>
+              <OnCard data-test="flashcard-text">Pergunta 7</OnCard>
               <Play data-test="play-btn" src={seta} alt="" />
             </Card>
             <Card data-test="flashcard">
