@@ -22,10 +22,10 @@ const Finish = styled.p`
   margin-top: 24px;
 `;
 
-export default function Bottom(){
+export default function Foot({respondidas}){
     return(
         <Footer data-test="footer">
-            <Finish>0/8 CONCLUÍDOS</Finish>
+            <Finish>{respondidas}/8 CONCLUÍDOS</Finish>
         </Footer>
     );
 }

@@ -35,7 +35,7 @@ const Box = styled.div`
   height: 44px;
 `;
 
-export default function Top(){
+export default function Head(){
     return(
         <Header>
             <Img src={logo} alt="" />

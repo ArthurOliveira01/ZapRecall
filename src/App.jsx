@@ -1,15 +1,16 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useState } from 'react';
 import { createGlobalStyle } from "styled-components";
-import Bottom from "./Bottom.jsx";
-import Top from "./Top.jsx";
+import Foot from "./Foot.jsx";
+import Head from "./Head.jsx";
 import Flashcards from "./Flashcards.jsx";
+
 
 const GlobalStyle = createGlobalStyle`
   :root{
     background-color: #FB6B6B;
     width: 100%;
-    height: 950px;
+    height: 1900px;
   }
 
    /* Reset de CSS */
@@ -54,26 +55,47 @@ const Container = styled.div`
 `;
 
 const cards = [
-	{ question: "O que é JSX?", answer: "Uma extensão da linguagem JavaScript" },
-	{ question: "O React é __", answer: "Uma biblioteca JavaScript para construção de interfaces" },
-	{ question: "Componentes devem iniciar com __", answer: "Letra maiúscula" },
-	{ question: "Podemos colocar __ dentro do JSX", answer: "expressões" },
-	{ question: "O ReactDOM nos ajuda __", answer: "Interagindo com a DOM para colocar componentes React na mesma" },
-	{ question: "Usamos o npm para __", answer: "Gerenciar os pacotes necessários e suas dependências" },
-	{ question: "Usamos props para __", answer: "Passar diferentes informações para componentes" },
-	{ question: "Usamos estado (state) para __", answer: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" }
+	{ id: 1, question: "O que é JSX?", answer: "Uma extensão da linguagem JavaScript" },
+	{ id: 2, question: "O React é __", answer: "Uma biblioteca JavaScript para construção de interfaces" },
+	{ id: 3, question: "Componentes devem iniciar com __", answer: "Letra maiúscula" },
+	{ id: 4, question: "Podemos colocar __ dentro do JSX", answer: "expressões" },
+	{ id: 5, question: "O ReactDOM nos ajuda __", answer: "Interagindo com a DOM para colocar componentes React na mesma" },
+	{ id: 6, question: "Usamos o npm para __", answer: "Gerenciar os pacotes necessários e suas dependências" },
+	{ id: 7, question: "Usamos props para __", answer: "Passar diferentes informações para componentes" },
+	{ id: 8, question: "Usamos estado (state) para __", answer: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" }
 ];
 
 export default function App() {
+  
+  let initial = [];
+  let pergunta = [];
+  let resposta = [];
+  
+  cards.map(cards => {
+    initial.push(`Pergunta ${cards.id}`)
+    pergunta.push(cards.question)
+    resposta.push(cards.answer)
+  });
+  const [respondidas, setRespondidas] = useState(0);
+  const [estado, setEstado] = useState(0);
+  const [conjunto, setConjunto] = useState([]);
+  const [text, setText] = useState(resposta);
+  
+
   return (
     <div>
       <GlobalStyle />
         <Container>
-          <Top />
+          <Head />
           <Flashcards
-          question = {cards.question}
+          text = {text}
+          initial = {initial}
+          pergunta = {pergunta}
+          resposta = {resposta}
           />
-          <Bottom />
+          <Foot
+          respondidas = {respondidas}
+          />
         </Container>
     </div>
   );
